@@ -4422,13 +4422,13 @@ function populateDock() {
             img.src = iconSource;
         } else if (iconSource) {
             // Otherwise, assume it's a local filename and prepend the default path.
-            img.src = `/assets/appicon/${iconSource}`;
+            img.src = `/legacy/lithium/appicon/${iconSource}`;
         } else {
             // Fallback for missing icons.
-            img.src = '/assets/appicon/default.png';
+            img.src = '/legacy/lithium/appicon/default.png';
         }
 
-	img.onerror = () => { img.src = '/assets/appicon/default.png'; };
+	img.onerror = () => { img.src = '/legacy/lithium/appicon/default.png'; };
         
         dockIcon.appendChild(img);
 	 
@@ -4481,15 +4481,15 @@ function createAppIcons() {
             img.src = iconSource;
         } else if (iconSource) {
             // Otherwise, assume it's a local filename and prepend the default path.
-            img.src = `/assets/appicon/${iconSource}`;
+            img.src = `/legacy/lithium/appicon/${iconSource}`;
         } else {
             // Fallback for cases where the icon is missing entirely.
-            img.src = '/assets/appicon/default.png';
+            img.src = '/legacy/lithium/appicon/default.png';
         }
 
         // 3. Set the error handler AFTER defining the initial source.
         img.onerror = () => {
-            img.src = '/assets/appicon/default.png';
+            img.src = '/legacy/lithium/appicon/default.png';
         };
         
         const label = document.createElement('span');
@@ -5210,7 +5210,7 @@ secondsSwitch.addEventListener('change', function() {
 });
 
 document.getElementById("versionButton").addEventListener("click", function() {
-    window.open("https://kirbindustries.gitbook.io/gurasuraisu", "_blank");
+    window.open("https://kirbindustries.gitbook.io/polygol", "_blank");
 });
 
 document.addEventListener('keydown', (event) => {
@@ -6059,7 +6059,7 @@ function showMediaWidget(metadata) {
     const widget = document.getElementById('media-session-widget');
     if (!widget) return;
     
-    document.getElementById('media-widget-art').src = metadata.artwork[0]?.src || '/assets/appicon/default.png';
+    document.getElementById('media-widget-art').src = metadata.artwork[0]?.src || '/legacy/lithium/appicon/default.png';
     document.getElementById('media-widget-title').textContent = metadata.title || 'Unknown Title';
     document.getElementById('media-widget-artist').textContent = metadata.artist || 'Unknown Artist';
     
