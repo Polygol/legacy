@@ -3856,7 +3856,7 @@ function populateDock() {
         dockIcon.className = 'dock-icon';
         
         const img = document.createElement('img');
-        img.src = `/assets/appicon/${details.icon}`;
+        img.src = `/legacy/sodium/assets/appicon/${details.icon}`;
         img.alt = name;
         
         dockIcon.appendChild(img);
@@ -3894,10 +3894,10 @@ function createAppIcons() {
         appIcon.dataset.app = app.name;
         
         const img = document.createElement('img');
-        img.src = `/assets/appicon/${app.details.icon}`;
+        img.src = `/legacy/sodium/assets/appicon/${app.details.icon}`;
         img.alt = app.name;
         img.onerror = () => {
-            img.src = '/assets/appicon/question.png';
+            img.src = '/legacy/sodium/assets/appicon/question.png';
         };
         
         const label = document.createElement('span');
