@@ -1538,13 +1538,13 @@ function loadPreferencesSearch() {
 }
 
 const appLinks = {
-    "Chronos": "https://gurasuraisu.github.io/chronos",
-    "Ailuator": "https://gurasuraisu.github.io/ailuator",
-    "Wordy": "https://gurasuraisu.github.io/wordy",
-    "Music": "https://gurasuraisu.github.io/music",
-    "Fantaskical": "https://gurasuraisu.github.io/fantaskical",
-    "Clapper": "https://gurasuraisu.github.io/clapper",
-    "Weather": "https://gurasuraisu.github.io/weather",
+    "Chronos": "https://polygol.github.io/chronos",
+    "Ailuator": "https://polygol.github.io/ailuator",
+    "Wordy": "https://polygol.github.io/wordy",
+    "Music": "https://polygol.github.io/music",
+    "Fantaskical": "https://polygol.github.io/fantaskical",
+    "Clapper": "https://polygol.github.io/clapper",
+    "Weather": "https://polygol.github.io/weather",
 };
 
 function fuzzySearch(query, appList) {
@@ -4563,7 +4563,7 @@ persistentClock.addEventListener('click', () => {
 });
 
 document.getElementById("versionButton").addEventListener("click", function() {
-    window.open("https://kirbindustries.gitbook.io/gurasuraisu", "_blank");
+    window.open("https://kirbindustries.gitbook.io/polygol", "_blank");
 });
 
 document.addEventListener('keydown', (event) => {
