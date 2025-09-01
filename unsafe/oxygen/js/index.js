@@ -26,15 +26,15 @@ function consoleGreeting() {
     `;
 
     const license = `
-Copyright © 2025 Gurasuraisu, kirbIndustries
+Copyright © 2025 Gurasuraisu (Polygol), kirbIndustries
 Licensed under the GNU General Public License, Version 2.0 (GPL-2.0)
 You may obtain a copy of the License at https://www.gnu.org/licenses/gpl-3.0.html
     `;
 
     const theft = `
 THEFT NOTICE
-Gurasuraisu is open source, and free for all.
-Please make sure to use Gurasuraisu from https://gurasuraisu.github.io to avoid counterfeit versions.
+Gurasuraisu (Polygol) is open source, and free for all.
+Please make sure to use Gurasuraisu from https://polygol.github.io/legacy to avoid counterfeit versions.
     `;
 
     console.info(greeting);
@@ -1212,15 +1212,15 @@ const searchIcon = document.getElementById('search-icon');
 const autocompleteSuggestions = document.getElementById('autocomplete-suggestions');
 
 const appLinks = {
-    "Chronos": "https://gurasuraisu.github.io/chronos",
-    "Ailuator": "https://gurasuraisu.github.io/ailuator",
-    "Wordy": "https://gurasuraisu.github.io/wordy",
-    "Music": "https://gurasuraisu.github.io/music",
-    "Stickies": "https://gurasuraisu.github.io/stickies",
-    "Moments": "https://gurasuraisu.github.io/moments",
+    "Chronos": "https://polygol.github.io/chronos",
+    "Ailuator": "https://polygol.github.io/ailuator",
+    "Wordy": "https://polygol.github.io/wordy",
+    "Music": "https://polygol.github.io/music",
+    "Stickies": "https://polygol.github.io/stickies",
+    "Moments": "https://polygol.github.io/moments",
     "SketchPad": "https://photos.google.com",
-    "Fantaskical": "https://gurasuraisu.github.io/fantaskical",
-    "Clapper": "https://gurasuraisu.github.io/clapper",
+    "Fantaskical": "https://polygol.github.io/fantaskical",
+    "Clapper": "https://polygol.github.io/clapper",
 };
 
 function fuzzySearch(query, appList) {
@@ -1656,47 +1656,47 @@ function initializeCustomization() {
     // App definitions
     const apps = {
         "Chronos": {
-            url: "https://gurasuraisu.github.io/chronos",
+            url: "https://polygol.github.io/chronos",
             icon: "alarm.png"
         },
         
         "Ailuator": {
-            url: "https://gurasuraisu.github.io/ailuator",
+            url: "https://polygol.github.io/ailuator",
             icon: "calculator.png"
         },
 
         "Wordy": {
-            url: "https://gurasuraisu.github.io/wordy",
+            url: "https://polygol.github.io/wordy",
             icon: "docs.png"
         },
 
         "Music": {
-            url: "https://gurasuraisu.github.io/music",
+            url: "https://polygol.github.io/music",
             icon: "music.png"
         },
 
         "Stickies": {
-            url: "https://gurasuraisu.github.io/stickies",
+            url: "https://polygol.github.io/stickies",
             icon: "notes.png"
         },
 
         "Moments": {
-            url: "https://gurasuraisu.github.io/moments",
+            url: "https://polygol.github.io/moments",
             icon: "photos.png"
         },
 
         "SketchPad": {
-            url: "https://gurasuraisu.github.io/sketchpad",
+            url: "https://polygol.github.io/sketchpad",
             icon: "sketch.png"
         },
 
         "Fantaskical": {
-            url: "https://gurasuraisu.github.io/fantaskical",
+            url: "https://polygol.github.io/fantaskical",
             icon: "tasks.png"
         },
 
         "Clapper": {
-            url: "https://gurasuraisu.github.io/clapper",
+            url: "https://polygol.github.io/clapper",
             icon: "video.png"
         },
     };
