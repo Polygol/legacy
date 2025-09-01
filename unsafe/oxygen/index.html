@@ -1,0 +1,148 @@
+<html lang="en"><head>
+    <link rel="icon" href="/assets/favicon.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#1c1c1c">
+    <title>Gurasuraisu</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded">
+</head>
+<body>
+    <div class="drawer-handle">
+        <div class="drawer-pill"></div>
+    </div>
+
+    <div id="persistent-clock" class="persistent-clock">00:00</div>
+    
+    <div class="container">
+        <div class="info">
+            <div class="date" id="date"><span class="material-symbols-rounded">rotate_right</span></div>
+        </div>
+        <div class="clock" id="clock">Gurasuraisu</div>
+        <div class="clockwidgets">
+            <div class="search-container">
+                <span id="search-icon" class="material-symbols-rounded search-icon">search</span>
+                <input type="text" class="search-input" id="search-input" placeholder="Search">
+                <div id="autocomplete-suggestions" class="autocomplete-suggestions"></div>
+            </div>
+            <div class="weather-widget" id="weather">
+                <span class="temperature" id="temperature"></span>
+                <span class="weather-icon" id="weather-icon"><span class="material-symbols-rounded">cloud_off</span></span>
+            </div>
+            <div class="timer-widget" id="timer-widget">
+                 <span class="timer-text" id="timer-text"></span>
+                 <span class="timer-icon material-symbols-rounded">timer</span>
+            </div>
+        </div>
+    </div>
+                
+<div id="customizeModal" class="modal">
+    <div class="modal-content">
+        <button class="close" id="closeCustomizeModal"><span class="material-symbols-rounded">close</span></button>
+        <h2>Settings</h2>
+        <div class="theme-toggle">
+            <label for="theme-switch">Light Mode</label>
+            <input type="checkbox" id="theme-switch">
+        </div>
+        <div class="clock-settings">
+            <label for="seconds-switch">Show Seconds</label>
+            <input type="checkbox" id="seconds-switch" checked>
+        </div>
+        <div class="wallpaper-upload">
+            <label>Wallpaper</label>
+            <input type="file" id="wallpaperInput" accept=".png, .jpeg, .jpg, .gif, .mp4">
+            <button id="uploadButton">Choose Image</button>
+        </div>
+        <div class="font-selection">
+            <label for="font-select">Clock Style</label>
+            <select id="font-select">
+                <option value="Inter">Default</option>
+                <option value="Roboto">Business</option>
+                <option value="DynaPuff">Puffy</option>
+                <option value="DM Serif Display">Classic</option>
+                <option value="Anton">Bold</option>
+                <option value="Roboto Mono">Mono</option>
+                <option value="DotGothic16">Pixel</option>
+                <option value="Kalam">Handwritten</option>
+            </select>
+        </div>
+        <div class="weather-settings">
+            <label for="weather-switch">Show Weather</label>
+            <input type="checkbox" id="weather-switch" checked>
+        </div>
+        <div class="version-info">
+            <label>Gurasuraisu Version</label>
+            <button id="versionButton">Gurasuraisu Oxgyen 12.8.6</button>
+        </div>
+    </div>
+</div>
+    
+    <div id="timezoneModal" class="modal">
+        <div class="modal-content">
+            <button class="close" id="closeModal"><span class="material-symbols-rounded">close</span></button>
+            <h2>Timer</h2>
+            <div class="timer-circle">
+                <svg class="progress-ring" width="450" height="450">
+                    <circle cx="225" cy="225" r="210" />
+                    <circle class="progress" cx="225" cy="225" r="210" />
+                </svg>
+                <div class="timer-display" id="display">00:00</div>
+                <input type="text" class="timer-input" id="timeInput" maxlength="4" pattern="\d*">
+            </div>
+            <div class="controls">
+                <button class="btn" onclick="addTime(30)">30s</button>
+                <button class="btn" onclick="addTime(60)">1m</button>
+                <button class="btn" onclick="addTime(300)">5m</button>
+                <button class="btn" onclick="addTime(1800)">30m</button>
+                <button class="btn" onclick="addTime(3600)">1h</button>
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn running" id="startBtn" onclick="toggleTimer()"><span class="material-symbols-rounded">play_arrow</span></button>
+                <button class="action-btn running" id="resetBtn" onclick="resetTimer()"><span class="material-symbols-rounded">restart_alt</span></button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="weatherModal" class="modal">
+        <div class="modal-content">
+            <button class="close" id="closeWeatherModal"><span class="material-symbols-rounded">close</span></button>
+            <div id="detailedWeather" class="detailed-weather">
+                <p><span class="material-symbols-rounded">cloud_off</span></p>
+            </div>
+        </div>
+    </div>
+    
+    <input type="file" id="wallpaperInput" accept=".jpg, .jpeg, .png">
+        <div class="customize" id="customize">
+            <span class="material-symbols-rounded">settings</span>
+        </div>
+
+    <div class="blur-overlay" id="blurOverlay"></div>
+
+    <div id="app-drawer" class="app-drawer">
+        <div class="app-drawer-handle"></div>
+        <div class="app-drawer-content">
+            <div class="app-drawer-grid" id="app-grid">
+            </div>
+        </div>
+    </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('ServiceWorker registered:', registration);
+          })
+          .catch(error => {
+            console.log('ServiceWorker registration failed:', error);
+          });
+      });
+    }
+  </script>
+    
+    <script src="js/index.js"></script> 
+</body>
+</html>
