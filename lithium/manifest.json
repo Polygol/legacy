@@ -1,0 +1,15 @@
+{
+  "name": "Gurasuraisu",
+  "short_name": "Gurasuraisu",
+  "start_url": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay"],
+  "icons": [
+    {
+      "src": "/assets/img/pwaicon/regular.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
