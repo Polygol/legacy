@@ -4425,10 +4425,10 @@ function populateDock() {
             img.src = `/legacy/lithium/appicon/${iconSource}`;
         } else {
             // Fallback for missing icons.
-            img.src = '/legacy/lithium/appicon/default.png';
+            img.src = '/legacy/lithium/assets/appicon/default.png';
         }
 
-	img.onerror = () => { img.src = '/legacy/lithium/appicon/default.png'; };
+	img.onerror = () => { img.src = '/legacy/lithium/assets/appicon/default.png'; };
         
         dockIcon.appendChild(img);
 	 
@@ -4484,12 +4484,12 @@ function createAppIcons() {
             img.src = `/legacy/lithium/appicon/${iconSource}`;
         } else {
             // Fallback for cases where the icon is missing entirely.
-            img.src = '/legacy/lithium/appicon/default.png';
+            img.src = '/legacy/lithium/assets/appicon/default.png';
         }
 
         // 3. Set the error handler AFTER defining the initial source.
         img.onerror = () => {
-            img.src = '/legacy/lithium/appicon/default.png';
+            img.src = '/legacy/lithium/assets/appicon/default.png';
         };
         
         const label = document.createElement('span');
@@ -6059,7 +6059,7 @@ function showMediaWidget(metadata) {
     const widget = document.getElementById('media-session-widget');
     if (!widget) return;
     
-    document.getElementById('media-widget-art').src = metadata.artwork[0]?.src || '/legacy/lithium/appicon/default.png';
+    document.getElementById('media-widget-art').src = metadata.artwork[0]?.src || '/legacy/lithium/assets/appicon/default.png';
     document.getElementById('media-widget-title').textContent = metadata.title || 'Unknown Title';
     document.getElementById('media-widget-artist').textContent = metadata.artist || 'Unknown Artist';
     
