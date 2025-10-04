@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polygol Media Widget</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <style>
+        :root {
+            --text-color: #f9f9f9;
+            --secondary-text-color: rgba(255, 255, 255, 0.7);
+        }
+        body.light-theme {
+            --text-color: #333333;
+            --secondary-text-color: rgba(0, 0, 0, 0.7);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 15px;
+            font-family: 'Inter', sans-serif;
+            background-color: transparent;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .widget-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            flex-direction: column;
+            bottom: 0;
+            position: absolute;
+            padding: 12px;
+        }
+        .album-art {
+            width: 100vw;
+            height: 100vh;
+            /* Added background properties for the div */
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            /* Flipped opacity mask */
+            -webkit-mask-image: linear-gradient(to bottom, 
+                rgba(0,0,0,1) 25%, 
+                rgba(0,0,0,0.75) 50%, 
+                rgba(0,0,0,0) 100%
+            );
+            mask-image: linear-gradient(to bottom, 
+                rgba(0,0,0,1) 25%, 
+                rgba(0,0,0,0.75) 50%, 
+                rgba(0,0,0,0) 100%
+            );
+        }
+        /* New pseudo-element for the gradient blur effect */
+        .album-art::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            /* Inherits the background from the parent .album-art div */
+            background: inherit;
+            /* Applies the maximum blur */
+            filter: blur(5px);
+            /* Mask to control the visibility of the blur */
+            -webkit-mask-image: linear-gradient(to bottom,
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,0.50) 50%,
+                rgba(0,0,0,1) 100%
+            );
+            mask-image: linear-gradient(to bottom,
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,0.50) 50%,
+                rgba(0,0,0,1) 100%
+            );
+        }
+        .info {
+            overflow: hidden;
+            text-align: center;
+            width: 100%;
+        }
+        .title, .artist {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .title {
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .artist {
+            font-size: 12px;
+            color: var(--secondary-text-color);
+        }
+        .placeholder {
+            color: var(--secondary-text-color);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="widget-container" class="widget-content">
+        <!-- Content will be loaded by JavaScript -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('widget-container');
+
+            function displayMetadata(metadata) {
+                let albumArtEl = document.querySelector('.album-art');
+
+                if (!metadata || !metadata.title) {
+                    container.innerHTML = `<span class="placeholder"><span class="material-symbols-rounded">music_note</span></span>`;
+                    if (albumArtEl) albumArtEl.remove(); // Remove art if nothing is playing
+                    return;
+                }
+
+                if (!albumArtEl) {
+                    // Create a <div> instead of an <img>
+                    albumArtEl = document.createElement('div');
+                    albumArtEl.className = 'album-art';
+                    document.body.prepend(albumArtEl);
+                }
+                
+                const artwork = metadata.artwork[0]?.src || '/assets/appicon/default.png';
+                // Set the background-image style instead of the src attribute
+                albumArtEl.style.backgroundImage = `url('${artwork}')`;
+
+                container.innerHTML = `
+                    <div class="info">
+                        <div class="title">${metadata.title}</div>
+                        <div class="artist">${metadata.artist}</div>
+                    </div>
+                `;
+            }
+
+            // Initial load from localStorage
+            try {
+                const savedMetadata = JSON.parse(localStorage.getItem('lastMediaMetadata'));
+                displayMetadata(savedMetadata);
+            } catch (e) {
+                container.innerHTML = `<span class="placeholder">Nothing Playing</span>`;
+            }
+
+            // Listen for real-time updates from other tabs/windows
+            window.addEventListener('storage', (event) => {
+                if (event.key === 'lastMediaMetadata') {
+                    try {
+                        const newMetadata = JSON.parse(event.newValue);
+                        displayMetadata(newMetadata);
+                    } catch (e) {
+                         displayMetadata(null);
+                    }
+                }
+            });
+            
+            // Apply theme from parent
+            try {
+                 const storedTheme = localStorage.getItem('theme') || 'dark';
+                 document.body.classList.toggle('light-theme', storedTheme === 'light');
+            } catch (e) {}
+
+            window.addEventListener('message', (event) => {
+                if (event.data && event.data.type === 'themeUpdate') {
+                     document.body.classList.toggle('light-theme', event.data.theme === 'light');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
