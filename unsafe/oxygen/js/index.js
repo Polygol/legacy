@@ -1709,7 +1709,7 @@ function populateDock() {
     drawerIcon.className = 'dock-icon drawer-opener';
     
     const drawerImg = document.createElement('img');
-    drawerImg.src = '/assets/appicon/appoff.png'; // Make sure to have this icon
+    drawerImg.src = '/legacy/unsafe/oxygen/assets/appicon/appoff.png'; // Make sure to have this icon
     drawerImg.alt = 'Open Apps';
     
     drawerIcon.appendChild(drawerImg);
@@ -1785,10 +1785,10 @@ function createAppIcons() {
         appIcon.dataset.app = app.name;
 
         const img = document.createElement('img');
-        img.src = `/assets/appicon/${app.details.icon}`;
+        img.src = `/legacy/unsafe/oxygen/assets/appicon/${app.details.icon}`;
         img.alt = app.name;
         img.onerror = () => {
-            img.src = '/assets/default-app-icon.png';
+            img.src = '/legacy/unsafe/oxygen/assets/appicon/default-app-icon.png';
         };
 
         const label = document.createElement('span');
