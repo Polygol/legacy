@@ -372,7 +372,7 @@ function renderWidgets() {
                         createFullscreenEmbed(apps[lastApp].url);
                     } else {
                         // SENSIBLE FALLBACK: If no app is found, open Music
-                        createFullscreenEmbed('/music/index.html');
+                        createFullscreenEmbed('./music/index.html');
                     }
                 } else {
                     // Standard app widget behavior
@@ -1268,17 +1268,17 @@ const blurOverlay = document.getElementById('blurOverlay');
 
 clockElement.addEventListener('click', () => {
     if (!gurappsEnabled) return;
-    createFullscreenEmbed('/chronos/index.html');
+    createFullscreenEmbed('./chronos/index.html');
 });
 
 weatherWidget.addEventListener('click', () => {
     if (!gurappsEnabled) return;
-    createFullscreenEmbed('/weather/index.html');
+    createFullscreenEmbed('./weather/index.html');
 });
 
 dateElement.addEventListener('click', () => {
     if (!gurappsEnabled) return;
-    createFullscreenEmbed('/fantaskical/index.html');
+    createFullscreenEmbed('./fantaskical/index.html');
 });
 
 startSynchronizedClockAndDate();
@@ -4291,7 +4291,7 @@ function initializeCustomization() {
 // App definitions
 let apps = {
     "App Store": {
-        url: "/appstore/index.html",
+        url: "./appstore/index.html",
         icon: "appstore.png"
     }
 };
@@ -4341,7 +4341,7 @@ async function installApp(appData) {
 
     console.log(`Installing app: ${appData.name}`);
 
-    const iconFileName = appData.iconUrl.split('/').pop();
+    const iconFileName = appData.iconUrl.split('./').pop();
 
     // 1. Add the new app to the in-memory object with the full icon URL.
     apps[appData.name] = {
@@ -4393,7 +4393,7 @@ async function installApp(appData) {
 async function deleteApp(appName) {
     // --- Protection Clause ---
     const appToDelete = apps[appName];
-    if (appToDelete && appToDelete.url.includes('/appstore/index.html')) {
+    if (appToDelete && appToDelete.url.includes('./appstore/index.html')) {
         showPopup(currentLanguage.GURAPP_DELETE_STORE_DENIED);
         return; // Stop the function immediately
     }
@@ -4463,7 +4463,7 @@ function createFullscreenEmbed(url) {
     const appDetails = apps[appName];
     if (appDetails && appDetails.icon) {
         let iconUrl = appDetails.icon;
-        if (!(iconUrl.startsWith('http') || iconUrl.startsWith('/'))) {
+        if (!(iconUrl.startsWith('http') || iconUrl.startsWith('./'))) {
             // If it's a local filename, prepend the path
             iconUrl = `assets/appicon/${iconUrl}`;
         }
@@ -4740,7 +4740,7 @@ function populateDock() {
         img.alt = name;
 
 	const iconSource = details.icon;
-        if (iconSource && (iconSource.startsWith('http') || iconSource.startsWith('/'))) {
+        if (iconSource && (iconSource.startsWith('http') || iconSource.startsWith('./'))) {
             // If it's a full URL or a root-relative path, use it directly.
             img.src = iconSource;
         } else if (iconSource) {
@@ -4795,7 +4795,7 @@ function createAppIcons() {
         const iconSource = app.details.icon;
 
         // 2. Check the source type and set img.src only ONCE.
-        if (iconSource && (iconSource.startsWith('http') || iconSource.startsWith('/'))) {
+        if (iconSource && (iconSource.startsWith('http') || iconSource.startsWith('./'))) {
             // If it's an absolute URL or a root-relative path, use it directly.
             img.src = iconSource;
         } else if (iconSource) {
@@ -6553,7 +6553,7 @@ window.addEventListener('message', event => {
                 const sourceUrl = event.source.location.href;
 
                 // Check if the source URL path ends with the trusted App Store path
-		if (!sourceUrl.endsWith('/appstore/index.html') && !sourceUrl.endsWith('/terminal/index.html')) {
+		if (!sourceUrl.endsWith('./appstore/index.html') && !sourceUrl.endsWith('./terminal/index.html')) {
                     const errorMessage = `SECURITY VIOLATION: A script at "${sourceUrl}" attempted to call the protected '${data.functionName}' function. Access denied.`;
                     console.error(errorMessage);
                     return; // Stop processing immediately

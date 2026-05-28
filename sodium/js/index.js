@@ -639,11 +639,11 @@ clockElement.addEventListener('click', () => {
 });
 
 weatherWidget.addEventListener('click', () => {
-    createFullscreenEmbed('/weather/index.html');
+    createFullscreenEmbed('./weather/index.html');
 });
 
 dateElement.addEventListener('click', () => {
-    createFullscreenEmbed('/fantaskical/index.html');
+    createFullscreenEmbed('./fantaskical/index.html');
 });
 
 closeModal.addEventListener('click', () => {
@@ -3448,31 +3448,31 @@ function initializeCustomization() {
 // App definitions
 const apps = {
     "Chronos": {
-        url: "/chronos/index.html",
+        url: "./chronos/index.html",
         icon: "alarm.png"
     },
     "Ailuator": {
-        url: "/ailuator/index.html",
+        url: "./ailuator/index.html",
         icon: "calculator.png"
     },
     "Wordy": {
-        url: "/wordy/index.html",
+        url: "./wordy/index.html",
         icon: "docs.png"
     },
     "Music": {
-        url: "/music/index.html",
+        url: "./music/index.html",
         icon: "music.png"
     },
     "Fantaskical": {
-        url: "/fantaskical/index.html",
+        url: "./fantaskical/index.html",
         icon: "tasks.png"
     },
     "Clapper": {
-        url: "/clapper/index.html",
+        url: "./clapper/index.html",
         icon: "video.png"
     },
     "Weather": {
-        url: "/weather/index.html",
+        url: "./weather/index.html",
         icon: "weather.png"
     }
 };
@@ -3856,7 +3856,7 @@ function populateDock() {
         dockIcon.className = 'dock-icon';
         
         const img = document.createElement('img');
-        img.src = `/legacy/sodium/assets/appicon/${details.icon}`;
+        img.src = `./legacy/sodium/assets/appicon/${details.icon}`;
         img.alt = name;
         
         dockIcon.appendChild(img);
@@ -3894,10 +3894,10 @@ function createAppIcons() {
         appIcon.dataset.app = app.name;
         
         const img = document.createElement('img');
-        img.src = `/legacy/sodium/assets/appicon/${app.details.icon}`;
+        img.src = `./legacy/sodium/assets/appicon/${app.details.icon}`;
         img.alt = app.name;
         img.onerror = () => {
-            img.src = '/legacy/sodium/assets/appicon/question.png';
+            img.src = './legacy/sodium/assets/appicon/question.png';
         };
         
         const label = document.createElement('span');

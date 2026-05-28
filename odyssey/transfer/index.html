@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polygol - System Transfer</title>
-    <link rel="icon" href="/assets/appicon/transfer.png" type="image/png">
+    <link rel="icon" href="./assets/appicon/transfer.png" type="image/png">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -368,7 +368,7 @@
 
                     logStatus('Import complete! Please return home and reload the page.');
                     alert('System transfer complete!\n\nYou will be redirected to the main page. Please manually reload it to see all changes.');
-                    window.location.href = '/';
+                    window.location.href = './';
 
                 } catch (error) {
                     logStatus(`Import failed: ${error.message}`, true);
@@ -396,7 +396,7 @@
 
         returnHomeBtn.addEventListener('click', () => {
             logStatus('Redirecting to main page...');
-            window.location.href = '/';
+            window.location.href = './';
         });
 
     </script>

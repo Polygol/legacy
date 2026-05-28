@@ -133,7 +133,7 @@
                     document.body.prepend(albumArtEl);
                 }
                 
-                const artwork = metadata.artwork[0]?.src || '/assets/appicon/default.png';
+                const artwork = metadata.artwork[0]?.src || './assets/appicon/default.png';
                 // Set the background-image style instead of the src attribute
                 albumArtEl.style.backgroundImage = `url('${artwork}')`;
 

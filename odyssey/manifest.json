@@ -2,8 +2,8 @@
   "name": "Polygol",
   "short_name": "Polygol",
   "categories": ["productivity", "utilities", "lifestyle", "entertainment", "business", "personalization"],
-  "scope": "/legacy/odyssey",
-  "start_url": "/legacy/odyssey",
+  "scope": "./legacy/odyssey",
+  "start_url": "./legacy/odyssey",
   "id": "index.html",
   "display": "standalone",
   "display_override": ["window-controls-overlay"],
@@ -11,19 +11,19 @@
   "background_color": "#1c1c1c",
   "icons": [
     {
-      "src": "/legacy/odyssey/assets/img/pwaicon/regular.png",
+      "src": "./legacy/odyssey/assets/img/pwaicon/regular.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/legacy/odyssey/assets/img/pwaicon/coloricon.png",
+      "src": "./legacy/odyssey/assets/img/pwaicon/coloricon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/legacy/odyssey/assets/img/pwaicon/monochrome.png",
+      "src": "./legacy/odyssey/assets/img/pwaicon/monochrome.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "monochrome maskable"
@@ -31,7 +31,7 @@
   ],
   "screenshots": [
     {
-      "src": "/legacy/odyssey/marketing/hero2.png",
+      "src": "./legacy/odyssey/marketing/hero2.png",
       "sizes": "1200x630",
       "type": "image/png"
     }

@@ -1,8 +1,8 @@
 <html lang="en"><head>
-    <link rel="icon" href="/assets/favicon.png" type="image/png">
+    <link rel="icon" href="./assets/favicon.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#1c1c1c">
     <title>Gurasuraisu</title>
     <link rel="stylesheet" href="css/styles.css">
@@ -132,7 +132,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('./sw.js')
           .then(registration => {
             console.log('ServiceWorker registered:', registration);
           })
