@@ -4,7 +4,7 @@
     <link rel="icon" href="./assets/img/favi/regular.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polygol Legacy Index</title>
+    <title data-lang-key="TITLE">Polygol Legacy Index</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded">
     <style>
@@ -109,24 +109,25 @@
             color: var(--text-color);
         }
     </style>
+    <script src="lang.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="content">
             <span class="material-symbols-rounded">update</span>
-            <h1>Polygol Legacy Index</h1>
-            <a href="./">Latest</a>
+            <h1 data-lang-key="TITLE">Polygol Legacy Index</h1>
+            <a href="./" data-lang-key="LATEST">Latest</a>
             <a href="./legacy/odyssey/index.html">Odyssey 15.1</a>
             <a href="./legacy/lithium/index.html">Lithium 14.4</a>
             <a href="./legacy/sodium/index.html">Sodium 13.1</a>
             <a href="./legacy/unsafe/oxygen/index.html">Oxygen 12.8.6</a>
         </div>
-        <small style="margin-top: 40px;">Make sure you <a href="https://kirbindustries.gitbook.io/polygol/security/transferring-data" target="_blank">backup your data</a> before running these versions if you had newer versions of Polygol/Gurasuraisu.</small>
-        <small style="margin-top: 20px;">Some versions may have been modifed to work with recent versions of Polygol. Gurasuraisu is the previous name of Polygol.</small>
+        <small style="margin-top: 40px;">Make sure you <a href="https://kirbindustries.gitbook.io/polygol/security/transferring-data" target="_blank">backup your data</a> before running these versions if you had newer versions of Polygol/Polygol.</small>
+        <small style="margin-top: 20px;">Some versions may have been modifed to work with recent versions of Polygol. Polygol is the previous name of Polygol.</small>
     </div>
 
     <script>
-        // Theme synchronization for Gurapp side
+        // Theme synchronization for Polygolapp side
         document.addEventListener('DOMContentLoaded', () => {
             // Initial theme application based on localStorage
             const storedTheme = localStorage.getItem('theme') || 'dark';
@@ -162,5 +163,43 @@
             }, 5000);
         });
     </script>
+<script>
+function getAppLanguage() {
+    let l = (localStorage.getItem('language') || localStorage.getItem('selectedLanguage') || 'EN').toUpperCase();
+    if (l === 'JA') l = 'JP';
+    return ['EN', 'JP', 'KO', 'ZH'].includes(l) ? l : 'EN';
+}
+
+function t(key, params = {}) {
+    const lang = getAppLanguage();
+    const dict = window['LANG_' + lang + '_LEGACY'] || window['LANG_EN_LEGACY'] || {};
+    let str = dict[key] || key;
+    Object.keys(params).forEach(p => str = str.replace(new RegExp('\\{' + p + '\\}', 'g'), params[p]));
+    return str;
+}
+
+function applyLanguage(langCode) {
+    if (langCode) localStorage.setItem('language', langCode);
+    const lang = getAppLanguage();
+    const bcpMap = { EN: 'en-US', JP: 'ja-JP', KO: 'ko-KR', ZH: 'zh-CN' };
+    document.documentElement.lang = bcpMap[lang] || 'en-US';
+    
+    document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const k = el.getAttribute('data-lang-key');
+        if (k) {
+            if (el.tagName === 'TITLE') document.title = t(k);
+            else el.textContent = t(k);
+        }
+    });
+}
+
+window.addEventListener('message', (e) => {
+    if (e.data && (e.data.type === 'languageUpdate' || e.data.type === 'localeUpdate')) {
+        applyLanguage(e.data.languageCode);
+    }
+});
+
+window.addEventListener('DOMContentLoaded', () => applyLanguage());
+</script>
 </body>
 </html>

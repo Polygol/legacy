@@ -134,7 +134,7 @@
 
         const DB_SCHEMAS = {
             'WallpaperDB': { version: 1, stores: ['wallpapers'] },
-            'GuraAIDB': { version: 1, stores: [{ name: 'ChatHistory', options: { keyPath: 'id', autoIncrement: true } }] }
+            'PolygolAIDB': { version: 1, stores: [{ name: 'ChatHistory', options: { keyPath: 'id', autoIncrement: true } }] }
         };
         
         function logStatus(message, isError = false) {
@@ -266,7 +266,7 @@
 
                 // 3. Package and download
                 const transferData = {
-                    gurasuraisu_transfer_version: "1.0",
+                    polygol_transfer_version: "1.0",
                     export_timestamp: new Date().toISOString(),
                     data: {
                         localStorage: localStorageData,
@@ -275,7 +275,7 @@
                 };
 
                 const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-                const fileName = `gurasuraisu_transfer_${timestamp}.guradata`;
+                const fileName = `polygol_transfer_${timestamp}.guradata`;
                 downloadFile(JSON.stringify(transferData, null, 2), fileName, 'application/json');
 
                 logStatus(`Export successful! File '${fileName}' is downloading.`);
@@ -307,7 +307,7 @@
                     logStatus('Reading and parsing transfer file...');
                     const transferData = JSON.parse(e.target.result);
 
-                    if (!transferData.gurasuraisu_transfer_version || !transferData.data) {
+                    if (!transferData.polygol_transfer_version || !transferData.data) {
                         throw new Error('Invalid or corrupted .guradata file.');
                     }
                     

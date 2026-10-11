@@ -6,11 +6,11 @@ Ambient OS-like dashboard with clock, weather and advanced features without trac
 # Available for GitHub Pages
 You can access Polygol right now at https://polygol.github.io/
 
-# Gurapp Applications
-Gurapp can extend your Polygol experience. The GitHub repository for each application are seperate from the `polygol.github.io` GitHub repository.
+# Polygolapp Applications
+Polygolapp can extend your Polygol experience. The GitHub repository for each application are seperate from the `polygol.github.io` GitHub repository.
 
 # Running Locally
-Applications: You must download the Gurapps from each GitHub repository and place them in the root directory in order for Gurapps to work correctly with Polygol locally.
+Applications: You must download the Polygolapps from each GitHub repository and place them in the root directory in order for Polygolapps to work correctly with Polygol locally.
 Assets: You must edit the directory path in the code, since every path assumes that the asset is in root.
 
 # I HATE MISSING ASSETS
@@ -28,4 +28,4 @@ Fallback Fanny: jacknjellify
 
 Made by kirbIndustries
 
-AI Notice: Some sections of code are generated with various AI models. However, AI is not used at all for visual assets, such as Gurapp Icons.
+AI Notice: Some sections of code are generated with various AI models. However, AI is not used at all for visual assets, such as Polygolapp Icons.

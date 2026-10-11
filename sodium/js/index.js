@@ -11,7 +11,7 @@ function applyLanguage(language) {
 
     // Updating text content without removing icons
     document.querySelector('.weather-settings .cust-label').childNodes[2].textContent = language.WEATHER;
-    document.querySelector('.gurapps-optional .cust-label').childNodes[2].textContent = language.GURAPPS;
+    document.querySelector('.polygolapps-optional .cust-label').childNodes[2].textContent = language.GURAPPS;
     document.querySelector('.search-toggle .cust-label').childNodes[2].textContent = language.SEARCH_ENABLE;
     document.querySelector('.search-engine-options .cust-label').childNodes[2].textContent = language.SEARCH_ENGINE;
     document.querySelector('.search-ai-options .cust-label').childNodes[2].textContent = language.SEARCH_AI;
@@ -1961,10 +1961,10 @@ const themeSwitch = document.getElementById('theme-switch');
 const wallpaperInput = document.getElementById('wallpaperInput');
 const uploadButton = document.getElementById('uploadButton');
 const SLIDESHOW_INTERVAL = 600000; // 10 minutes in milliseconds
-const gurappsSwitch = document.getElementById("gurapps-switch");
+const polygolappsSwitch = document.getElementById("polygolapps-switch");
 const contrastSwitch = document.getElementById('contrast-switch');
 const animationSwitch = document.getElementById('animation-switch');
-let gurappsEnabled = localStorage.getItem("gurappsEnabled") !== "false";
+let polygolappsEnabled = localStorage.getItem("polygolappsEnabled") !== "false";
 let slideshowInterval = null;
 let currentWallpaperIndex = 0;
 let minimalMode = localStorage.getItem('minimalMode') === 'true';
@@ -2012,18 +2012,18 @@ animationSwitch.addEventListener('change', function() {
     }, window.location.origin);
 });
 
-// Function to handle Gurapps visibility
-function updateGurappsVisibility() {
+// Function to handle Polygolapps visibility
+function updatePolygolappsVisibility() {
     const drawerHandle = document.querySelector(".drawer-handle");
     const dock = document.getElementById("dock");
     
-    if (gurappsEnabled) {
-        // Show Gurapps elements
+    if (polygolappsEnabled) {
+        // Show Polygolapps elements
         if (drawerHandle) drawerHandle.style.display = "block";
         if (dock) dock.classList.remove("permanently-hidden");
         
         // Reset app functionality
-        document.body.classList.remove("gurapps-disabled");
+        document.body.classList.remove("polygolapps-disabled");
         
         // Re-enable search for apps
         const appKeys = Object.keys(appLinks);
@@ -2033,12 +2033,12 @@ function updateGurappsVisibility() {
             }
         });
     } else {
-        // Hide Gurapps elements
+        // Hide Polygolapps elements
         if (drawerHandle) drawerHandle.style.display = "none";
         if (dock) dock.classList.add("permanently-hidden");
         
         // Add class to body for CSS targeting
-        document.body.classList.add("gurapps-disabled");
+        document.body.classList.add("polygolapps-disabled");
         
         // Close app drawer if open
         if (appDrawer.classList.contains("open")) {
@@ -2059,11 +2059,11 @@ function updateGurappsVisibility() {
     }
 }
 
-gurappsSwitch.checked = gurappsEnabled;
-gurappsSwitch.addEventListener("change", function() {
-    gurappsEnabled = this.checked;
-    localStorage.setItem("gurappsEnabled", gurappsEnabled);
-    updateGurappsVisibility();
+polygolappsSwitch.checked = polygolappsEnabled;
+polygolappsSwitch.addEventListener("change", function() {
+    polygolappsEnabled = this.checked;
+    localStorage.setItem("polygolappsEnabled", polygolappsEnabled);
+    updatePolygolappsVisibility();
 });
 
 function updateMinimalMode() {
@@ -3539,7 +3539,7 @@ function createFullscreenEmbed(url) {
             }, 300);
         });
 
-        const controlElements = document.querySelectorAll('.weather-settings, .gurapps-optional, .clock-color-settings, .clock-settings, .wallpaper-upload, .font-selection, .search-toggle, .search-engine-options, .search-ai-options, .weight-slider-container');
+        const controlElements = document.querySelectorAll('.weather-settings, .polygolapps-optional, .clock-color-settings, .clock-settings, .wallpaper-upload, .font-selection, .search-toggle, .search-engine-options, .search-ai-options, .weight-slider-container');
         controlElements.forEach(el => {
             // Store ALL relevant original styles
             if (!el.dataset.originalStyles) {
@@ -3664,7 +3664,7 @@ function createFullscreenEmbed(url) {
         }, 300);
     });
 
-    const controlElements = document.querySelectorAll('.weather-settings, .gurapps-optional, .clock-color-settings, .clock-settings, .wallpaper-upload, .font-selection, .search-toggle, .search-engine-options, .search-ai-options, .weight-slider-container');
+    const controlElements = document.querySelectorAll('.weather-settings, .polygolapps-optional, .clock-color-settings, .clock-settings, .wallpaper-upload, .font-selection, .search-toggle, .search-engine-options, .search-ai-options, .weight-slider-container');
     controlElements.forEach(el => {
         // Store ALL relevant original styles
         if (!el.dataset.originalStyles) {
@@ -3774,7 +3774,7 @@ function minimizeFullscreenEmbed() {
         });
     });
 	
-    const controlElements = document.querySelectorAll('.weather-settings, .gurapps-optional, .clock-color-settings, .clock-settings, .wallpaper-upload, .font-selection, .search-toggle, .search-engine-options, .search-ai-options, .weight-slider-container');
+    const controlElements = document.querySelectorAll('.weather-settings, .polygolapps-optional, .clock-color-settings, .clock-settings, .wallpaper-upload, .font-selection, .search-toggle, .search-engine-options, .search-ai-options, .weight-slider-container');
     controlElements.forEach(el => {
         // Get original styles from stored data
         let originalStyles = {};
@@ -4858,7 +4858,7 @@ window.addEventListener('click', (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    updateGurappsVisibility();
+    updatePolygolappsVisibility();
 });
 
 document.addEventListener('DOMContentLoaded', function() {

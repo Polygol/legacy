@@ -21,20 +21,20 @@ function consoleGreeting() {
        =---::....+%@@@@@@@@@@@@@%*.........::      
          =-----::::::::::::::::::::::::::--        
                                                   
-               Welcome to Gurasuraisu!            
-            https://gurasuraisu.github.io         
+               Welcome to Polygol!            
+            https://polygol.github.io         
     `;
 
     const license = `
-Copyright © 2025 Gurasuraisu (Polygol), kirbIndustries
+Copyright © 2025 Polygol (Polygol), kirbIndustries
 Licensed under the GNU General Public License, Version 2.0 (GPL-2.0)
 You may obtain a copy of the License at https://www.gnu.org/licenses/gpl-3.0.html
     `;
 
     const theft = `
 THEFT NOTICE
-Gurasuraisu (Polygol) is open source, and free for all.
-Please make sure to use Gurasuraisu from https://polygol.github.io/legacy to avoid counterfeit versions.
+Polygol (Polygol) is open source, and free for all.
+Please make sure to use Polygol from https://polygol.github.io/legacy to avoid counterfeit versions.
     `;
 
     console.info(greeting);
@@ -119,15 +119,15 @@ let timerId = null;
 // Function to update the document title
 function updateTitle() {
     if (timeLeft > 0 && timerId) {
-        document.title = `${formatTime(timeLeft)} • Gurasuraisu`;
+        document.title = `${formatTime(timeLeft)} • Polygol`;
     } else {
         let now = new Date();
         let hours = String(now.getHours()).padStart(2, '0');
         let minutes = String(now.getMinutes()).padStart(2, '0');
         let seconds = String(now.getSeconds()).padStart(2, '0');
         document.title = showSeconds ? 
-            `${hours}:${minutes}:${seconds} • Gurasuraisu` : 
-            `${hours}:${minutes} • Gurasuraisu`;
+            `${hours}:${minutes}:${seconds} • Polygol` : 
+            `${hours}:${minutes} • Polygol`;
     }
 }
 
@@ -961,7 +961,7 @@ function createSetupScreen() {
 
     const setupPages = [
         {
-            title: "Welcome to Gurasuraisu",
+            title: "Welcome to Polygol",
             description: "Let's set up your personalized experience.",
             options: []
         },
@@ -972,7 +972,7 @@ function createSetupScreen() {
         },
         {
             title: "Allow Permissions",
-            description: "Gurasuraisu needs some permissions to provide the best experience.",
+            description: "Polygol needs some permissions to provide the best experience.",
             options: [
                 { 
                     name: "Location Access",
@@ -1014,7 +1014,7 @@ function createSetupScreen() {
         },
         {
             title: "Configure more options in Settings",
-            description: "To configure your Gurasuraisu, click on the gear icon on the bottom right.",
+            description: "To configure your Polygol, click on the gear icon on the bottom right.",
             options: []
         },
     ];
@@ -1153,7 +1153,7 @@ function createSetupScreen() {
                 setupContainer.style.opacity = '0';
                 setTimeout(() => {
                     setupContainer.remove();
-                    showPopup('Welcome to Gurasuraisu!');
+                    showPopup('Welcome to Polygol!');
                 }, 500);
             } else {
                 currentPage++;

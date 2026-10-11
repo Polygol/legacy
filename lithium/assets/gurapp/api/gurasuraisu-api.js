@@ -1,11 +1,11 @@
 /**
- * Gurasuraisu API for Gurapps
- * This helper script allows an iframe (Gurapp) to safely communicate
- * with the parent Gurasuraisu window and use its core functions.
+ * Polygol API for Polygolapps
+ * This helper script allows an iframe (Polygolapp) to safely communicate
+ * with the parent Polygol window and use its core functions.
  */
 
-// Gurasuraisu Cursor Injection
-// This block runs as soon as the script is loaded by the Gurapp.
+// Polygol Cursor Injection
+// This block runs as soon as the script is loaded by the Polygolapp.
 (function() {
     const style = document.createElement('style');
     style.textContent = `
@@ -13,25 +13,25 @@
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 10.04 10.04"><circle cx="5.02" cy="5.02" r="4.52" style="fill:rgba(0,0,0,0.5);stroke:rgba(255,255,255,0.5);stroke-width:1"./></svg>') 10 10, auto !important;
         }
     `;
-    // Append the style to the head of the Gurapp's document.
+    // Append the style to the head of the Polygolapp's document.
     document.head.appendChild(style);
 })();
  
-const Gurasuraisu = {
+const Polygol = {
   /**
    * Internal helper to send a structured message to the parent window.
-   * @param {string} functionName - The name of the Gurasuraisu function to call.
+   * @param {string} functionName - The name of the Polygol function to call.
    * @param {Array} args - An array of arguments to pass to the function.
    */
   _call: function(functionName, args = []) {
     if (window.parent && window.parent !== window) {
       window.parent.postMessage({
-        action: 'callGurasuraisuFunc',
+        action: 'callPolygolFunc',
         functionName: functionName,
         args: args
       }, window.location.origin);
     } else {
-      console.warn(`Gurasuraisu API: Could not call '${functionName}'. Not running inside a Gurasuraisu iframe.`);
+      console.warn(`Polygol API: Could not call '${functionName}'. Not running inside a Polygol iframe.`);
     }
   },
 
@@ -57,15 +57,15 @@ const Gurasuraisu = {
   },
 
   /**
-   * Requests the parent window to minimize the current Gurapp.
+   * Requests the parent window to minimize the current Polygolapp.
    */
   minimize: function() {
     this._call('minimizeFullscreenEmbed');
   },
 
   /**
-   * Requests the parent to open another Gurapp.
-   * @param {string} url - The URL of the Gurapp to open (e.g., "./chronos/index.html").
+   * Requests the parent to open another Polygolapp.
+   * @param {string} url - The URL of the Polygolapp to open (e.g., "./chronos/index.html").
    */
   openApp: function(url) {
     this._call('createFullscreenEmbed', [url]);
@@ -79,7 +79,7 @@ const Gurasuraisu = {
   },
  
    /**
-   * Asks the parent Gurasuraisu to send back the list of currently installed apps.
+   * Asks the parent Polygol to send back the list of currently installed apps.
    * The parent will respond with a 'installed-apps-list' message.
    */
   requestInstalledApps: function() {
@@ -87,7 +87,7 @@ const Gurasuraisu = {
   },
    
   /**
-  * Requests the parent Gurasuraisu to install a new Gurapp.
+  * Requests the parent Polygol to install a new Polygolapp.
   * @param {object} appObject - The complete app object with id, url, iconUrl, etc.
   */
   installApp: function(appObject) {
@@ -100,7 +100,7 @@ const Gurasuraisu = {
     
   /**
    * Registers a new media session with the parent.
-   * This will show the media widget in the Gurasu UI.
+   * This will show the media widget in the Polygolsu UI.
    * @param {object} metadata - An object with { title, artist, artwork: [{src}] }.
    * @param {string[]} [supportedActions] - An array of supported actions, e.g., ['playPause', 'next', 'prev'].
    */
@@ -111,7 +111,7 @@ const Gurasuraisu = {
   },
 
   /**
-   * Updates the parent Gurasu with the current playback state.
+   * Updates the parent Polygolsu with the current playback state.
    * @param {object} state - An object, e.g., { playbackState: 'playing' | 'paused', metadata: (optional) }.
    */
   updatePlaybackState: function(state) {
@@ -146,11 +146,11 @@ const Gurasuraisu = {
   }
 };
 
-// --- Event Listener for Messages FROM Gurasuraisu ---
+// --- Event Listener for Messages FROM Polygol ---
 
 /**
  * Listens for messages from the parent window, such as theme
- * or animation setting changes, and applies them to the Gurapp.
+ * or animation setting changes, and applies them to the Polygolapp.
  */
 window.addEventListener('message', async (event) => {
   if (event.origin !== window.location.origin) {
@@ -170,9 +170,9 @@ window.addEventListener('message', async (event) => {
       // --- NEW: Handles screenshot requests from the parent ---
       case 'request-screenshot':
         try {
-            // Check if html2canvas is loaded in the Gurapp's window
+            // Check if html2canvas is loaded in the Polygolapp's window
             if (typeof html2canvas !== 'function') {
-                console.error("html2canvas script not found in this Gurapp. Cannot fulfill screenshot request.");
+                console.error("html2canvas script not found in this Polygolapp. Cannot fulfill screenshot request.");
                 return; 
             }
             // Generate the screenshot of the app's content
@@ -185,7 +185,7 @@ window.addEventListener('message', async (event) => {
                 screenshotDataUrl: screenshotDataUrl
             }, window.location.origin);
         } catch (e) {
-            console.error("This Gurapp failed to generate its screenshot:", e);
+            console.error("This Polygolapp failed to generate its screenshot:", e);
         }
         break;
     }
@@ -193,7 +193,7 @@ window.addEventListener('message', async (event) => {
 });
 
 /**
- * On initial load, apply settings that might have been set by Gurasuraisu
+ * On initial load, apply settings that might have been set by Polygol
  * in localStorage for a seamless appearance.
  */
 document.addEventListener('DOMContentLoaded', () => {
@@ -204,6 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const animationsEnabled = localStorage.getItem('animationsEnabled') !== 'false';
         document.body.classList.toggle('reduce-animations', !animationsEnabled);
     } catch (e) {
-        console.error("Gurapp: Could not access localStorage. Settings may not apply.", e);
+        console.error("Polygolapp: Could not access localStorage. Settings may not apply.", e);
     }
 });
